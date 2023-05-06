@@ -129,6 +129,13 @@ public enum ChordType: Int, CaseIterable {
 
     /// Half Diminished Ninth: Minor Third, Diminished Fifth, Minor Seventh, Minor Ninth, Perfect Eleventh, Diminished Thirteenth
     case halfDiminishedFlatThirteenth
+    
+    //new cases
+    ///start from first note after root not the root. e.g/ C6/E starts at E. [.m3,.P5, .m6]
+    case sixthFirstInversion
+    
+    ///augmented major seventh, major seventh flat 5 [.M3, .A5, M7]
+    case augmentedMajorSeventh
 
     public var intervals: [Interval] {
         switch self {
@@ -139,7 +146,7 @@ public enum ChordType: Int, CaseIterable {
         case .suspendedTriad:                   return [.P4, .P5]
         case .sixth:                            return [.M3, .P5, .M6]
         case .minorSixth:                       return [.m3, .P5, .M6]
-        case .halfDiminishedSeventh:            return [.m3, .d5, .m7]
+        case .halfDiminishedSeventh:            return [.m3, .d5, .m7] //MINOR SEVENTH FLAT 5
         case .diminishedSeventh:                return [.m3, .d5, .d7]
         case .dominantSeventh:                  return [.M3, .P5, .m7]
         case .majorSeventh:                     return [.M3, .P5, .M7]
@@ -160,7 +167,7 @@ public enum ChordType: Int, CaseIterable {
         case .minorEleventh:                    return [.m3, .P5, .m7, .M9, .P11]
         case .halfDiminishedEleventh:           return [.m3, .d5, .m7, .m9, .P11]
         case .majorSeventhFlatFifth:            return [.M3, .d5, .M7]
-        case .minorSeventhSharpFifth:           return [.M3, .A5, .M7]
+        case .minorSeventhSharpFifth:           return [.m3, .A5, .m7]
         case .majorNinthSharpEleventh:          return [.M3, .P5, .M7, .M9, .A11]
         case .dominantFlatNinthSharpEleventh:   return [.M3, .P5, .m7, .m9, .A11]
         case .dominantFlatFifth:                return [.M3, .d5, .m7]
@@ -174,6 +181,12 @@ public enum ChordType: Int, CaseIterable {
         case .dominantThirteenth:               return [.M3, .P5, .m7, .M9, .P11, .P13]
         case .minorEleventhFlatThirteenth:      return [.m3, .P5, .m7, .M9, .P11, .d13]
         case .halfDiminishedFlatThirteenth:     return [.m3, .d5, .m7, .m9, .P11, .d13]
+            
+            //New Cases
+            //major seventh sharp 5
+        case .augmentedMajorSeventh:            return [.M3, .A5, .M7]
+            //start from first note after root not the root. e.g/ C6/E starts at E
+        case .sixthFirstInversion:              return [.m3,.P5, .m6]
         }
     }
 }
@@ -220,10 +233,14 @@ extension ChordType: CustomStringConvertible {
         case .majorThirteenth:                  return "maj13"
         case .minorThirteenth:                  return "m13"
         case .minorFlatThirteenthFlatNinth:     return "m♭13♭9"
-        case .majorThirteenthSharpEleventh:     return "maj13♯11"
-        case .dominantThirteenth:               return "13"
+        case .majorThirteenthSharpEleventh:     return "maj13♯11" 
+        case .dominantThirteenth:               return " "
         case .minorEleventhFlatThirteenth:      return "m11♭13"
         case .halfDiminishedFlatThirteenth:     return "(1/2)°♭13"
+            // additions
+        case .sixthFirstInversion:              return "6th first inversion"
+        case .augmentedMajorSeventh:            return "maj7⁺"
+            
         }
     }
 }
